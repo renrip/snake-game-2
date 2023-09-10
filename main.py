@@ -2,7 +2,7 @@
 Using this project to practice Git usage and for Python coding practice
 """
 # TODO research how to do configurable debug prints and instrument code with debug output
-# TODO figure out how to "flash" messages to the player
+# TODO figure out how to "flash" messages to the player -or- mod scoreboard to also display current speed
 
 # external modules
 from turtle import Screen
@@ -37,6 +37,7 @@ print(f"Starting speed/delay: {game_speed}/{game_delay}")
 
 # non-control handler functions
 def speed_up():
+    """adjust speed globals faster if not already 'fastest'"""
     global game_speed, game_delay
 
     if game_speed == "slow":
@@ -49,6 +50,7 @@ def speed_up():
 
 
 def speed_down():
+    """adjust speed globals slower if not already 'slowest'"""
     global game_speed, game_delay
 
     if game_speed == "fast":
@@ -67,6 +69,7 @@ scoreboard = Scoreboard()
 
 # handle game control keys
 screen.listen()
+# TODO enhance key handlers to only apply one direction change per cycle. build queue of dir changes
 screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
