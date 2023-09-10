@@ -13,6 +13,7 @@ from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
 
+# Constants
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
 SCREEN_BG_COLOR = "black"
@@ -36,7 +37,6 @@ print(f"Starting speed/delay: {game_speed}/{game_delay}")
 
 # non-control handler functions
 def speed_up():
-    # TODO refactor to use current state and globals to avoid hard coding values
     global game_speed, game_delay
 
     if game_speed == "slow":
@@ -49,7 +49,6 @@ def speed_up():
 
 
 def speed_down():
-    # TODO refactor to use current state and globals to avoid hard coding values
     global game_speed, game_delay
 
     if game_speed == "fast":
@@ -62,8 +61,8 @@ def speed_down():
 
 
 # create project objects
-snake = Snake()
-food = Food()
+snake = Snake(screen)
+food = Food(screen, snake)
 scoreboard = Scoreboard()
 
 # handle game control keys
@@ -74,8 +73,8 @@ screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
 # handle non-control keys
-screen.onkey(speed_up, "Prior")
-screen.onkey(speed_down, "Next")
+screen.onkey(speed_up, "Prior") #PgUp
+screen.onkey(speed_down, "Next") #PgDn
 
 game_is_on = True
 
@@ -85,16 +84,13 @@ while game_is_on:
     snake.move()
     scoreboard.refresh()
 
-    # TODO add Snake method that makes this cleaner - Snake.head_on_food()?
-    if snake.head.distance(food) < 15:
+    # check if snake is "eating" the food
+    if snake.head.distance(food) < 1:
         food.refresh()
         snake.extend()
         scoreboard.bump()
-    # TODO clean this up by adding a Snake method - Snake.out_of_bounds()?
-    if snake.head.xcor() > 280 or \
-       snake.head.xcor() < -280 or \
-       snake.head.ycor() > 280 or \
-       snake.head.ycor() < -280:
+
+    if snake.out_of_bounds():
         game_is_on = False
         scoreboard.game_over()
 

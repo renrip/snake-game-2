@@ -1,14 +1,19 @@
 from turtle import Turtle
 
-STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DISTANCE = 20
+STARTING_POSITIONS = [(0, 0), (-1 * MOVE_DISTANCE, 0), (-2 * MOVE_DISTANCE, 0)]
 UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
 
 class Snake:
-    def __init__(self):
+    def __init__(self, screen):
+        self.screen = screen
+        self.screen_width = screen.window_width()
+        self.screen_height = screen.window_height()
+
+        self.move_distance = MOVE_DISTANCE
         self.segments = []
         self.create_snake()
         self.head = self.segments[0]
@@ -33,6 +38,7 @@ class Snake:
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
     def move(self):
+        # move all but head to the position closer to the head
         for s in range(len(self.segments) - 1, 0, -1):
             new_x = self.segments[s - 1].xcor()
             new_y = self.segments[s - 1].ycor()
@@ -49,3 +55,14 @@ class Snake:
         t.penup()
         t.goto(position)
         self.segments.append(t)
+
+    def out_of_bounds(self):
+        x_limit = self.screen_width / 2 - self.move_distance
+        y_limit = self.screen_height / 2 - self.move_distance
+        # print(f"out_of_bounds() - x_limit: {x_limit}, y_limit: {y_limit}")
+
+        if abs(self.head.xcor()) > x_limit or \
+           abs(self.head.ycor()) > y_limit:
+            return True
+        else:
+            return False
