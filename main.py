@@ -80,24 +80,27 @@ game_is_on = True
 
 while game_is_on:
     screen.update()
-    time.sleep(game_delay)
-    snake.move()
     scoreboard.refresh()
+    time.sleep(game_delay)
 
-    # check if snake is "eating" the food
+    # check if snake is out of bounds
+    if snake.out_of_bounds():
+        game_is_on = False
+        scoreboard.game_over()
+
+    # Check if snake has "eaten" the food
     if snake.head.distance(food) < 1:
         food.refresh()
         snake.extend()
         scoreboard.bump()
 
-    if snake.out_of_bounds():
-        game_is_on = False
-        scoreboard.game_over()
-
+    # check if snake is hitting itself
     for segment in snake.segments[1:]:
-        if snake.head.distance(segment) < 10:
+        if snake.head.distance(segment) < 1:
             game_is_on = False
             scoreboard.game_over()
+
+    snake.move()
 
 # Leave screen up until user clicks
 screen.exitonclick()
