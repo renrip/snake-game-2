@@ -1,7 +1,6 @@
 """
 Using this project to practice Git usage and for Python coding practice
 """
-# TODO research how to do configurable debug prints and instrument code with debug output
 # TODO figure out how to "flash" messages to the player -or- mod scoreboard to also display current speed
 
 # external modules

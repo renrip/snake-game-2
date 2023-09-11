@@ -1,6 +1,7 @@
+Version 1.01
+-Added logging module that is configured bie snake_logging.config
 
 Version 1.0
-
 -Code cleanup and basic refactoring
 -Added ability to change the game speed on the fly with PgUp/PgDn keys
 
