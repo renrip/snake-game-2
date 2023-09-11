@@ -7,6 +7,7 @@ Using this project to practice Git usage and for Python coding practice
 # external modules
 from turtle import Screen
 import time
+from snake_logging import logger_main
 
 # project modules
 from snake import Snake
@@ -81,6 +82,8 @@ screen.onkey(speed_down, "Next") #PgDn
 
 game_is_on = True
 
+logger_main.info(f"Starting main game loop")
+
 while game_is_on:
     screen.update()
     scoreboard.refresh()
@@ -88,11 +91,13 @@ while game_is_on:
 
     # check if snake is out of bounds
     if snake.out_of_bounds():
+        logger_main.debug("Snake is out of bounds")
         game_is_on = False
         scoreboard.game_over()
 
     # Check if snake has "eaten" the food
     if snake.head.distance(food) < 1:
+        logger_main.debug("Snake ate some food")
         food.refresh()
         snake.extend()
         scoreboard.bump()
@@ -100,10 +105,13 @@ while game_is_on:
     # check if snake is hitting itself
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 1:
+            logger_main.debug("Snake ran into itself")
             game_is_on = False
             scoreboard.game_over()
 
     snake.move()
+
+logger_main.info("Exited main game loop")
 
 # Leave screen up until user clicks
 screen.exitonclick()

@@ -1,11 +1,12 @@
 from turtle import Turtle
 from random import randint
-
+from snake_logging import logger_food
 
 class Food(Turtle):
 
     def __init__(self, screen, snake):
         super().__init__()
+        logger_food.info("Initializing a Food object")
         self.screen = screen
         self.screen_width = screen.window_width()
         self.screen_height = screen.window_height()

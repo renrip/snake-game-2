@@ -1,4 +1,5 @@
 from turtle import Turtle
+from snake_logging import logger_snake
 
 MOVE_DISTANCE = 20
 STARTING_POSITIONS = [(0, 0), (-1 * MOVE_DISTANCE, 0), (-2 * MOVE_DISTANCE, 0)]
@@ -9,6 +10,7 @@ RIGHT = 0
 
 class Snake:
     def __init__(self, screen):
+        logger_snake.info("Initializing a Snake object")
         self.screen = screen
         self.screen_width = screen.window_width()
         self.screen_height = screen.window_height()
