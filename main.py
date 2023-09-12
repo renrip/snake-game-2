@@ -2,6 +2,7 @@
 Using this project to practice Git usage and for Python coding practice
 """
 # TODO figure out how to "flash" messages to the player -or- mod scoreboard to also display current speed
+# TODO reserve top line for score/status? add border around playable area, adjust other code
 
 # external modules
 from turtle import Screen
@@ -91,8 +92,9 @@ while game_is_on:
     # check if snake is out of bounds
     if snake.out_of_bounds():
         logger_main.debug("Snake is out of bounds")
-        game_is_on = False
-        scoreboard.game_over()
+        # game_is_on = False
+        scoreboard.reset()
+        snake.reset()
 
     # Check if snake has "eaten" the food
     if snake.head.distance(food) < 1:
@@ -105,8 +107,9 @@ while game_is_on:
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 1:
             logger_main.debug("Snake ran into itself")
-            game_is_on = False
-            scoreboard.game_over()
+            # game_is_on = False
+            scoreboard.reset()
+            snake.reset()
 
     snake.move()
 
