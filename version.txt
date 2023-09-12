@@ -1,5 +1,6 @@
 Version 1.01
 -Added logging module that is configured bie snake_logging.config
+-added high score stuff from Section 24
 
 Version 1.0
 -Code cleanup and basic refactoring
