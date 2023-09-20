@@ -1,3 +1,6 @@
+Version 1.03
+-added this commit to test local git credential storing
+
 Version 1.02
 - added this edit to test cycling to GitHub
 
