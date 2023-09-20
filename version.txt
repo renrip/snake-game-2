@@ -1,3 +1,6 @@
+Version 1.04
+- added for testing local git credential cache
+
 Version 1.03
 -added this commit to test local git credential storing
 
