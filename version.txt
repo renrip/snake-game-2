@@ -1,3 +1,6 @@
+Version 1.02
+- added this edit to test cycling to GitHub
+
 Version 1.01
 -Added logging module that is configured bie snake_logging.config
 -added high score stuff from Section 24
