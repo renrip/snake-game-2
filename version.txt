@@ -1,3 +1,6 @@
+Version 1.05
+ - changed to test modifying from a cloned project for VSCode
+
 Version 1.04
 - added for testing local git credential cache
 
